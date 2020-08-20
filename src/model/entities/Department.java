@@ -2,19 +2,19 @@ package model.entities;
 
 import java.io.Serializable;
 
-public class Department implements Serializable{
+public class Department implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private String Name;
+	private String name;
 	
-	public Department(Integer id, String name) {
-		this.id = id;
-		Name = name;
+	public Department() {
 	}
 
-	public Department() {
+	public Department(Integer id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 
 	public Integer getId() {
@@ -26,11 +26,11 @@ public class Department implements Serializable{
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	@Override
@@ -60,6 +60,6 @@ public class Department implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", Name=" + Name + "]";
-	}
+		return " [id = " + id + ", name = " + name + "]";
+	}	
 }
