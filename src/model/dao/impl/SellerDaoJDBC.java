@@ -120,8 +120,8 @@ public class SellerDaoJDBC implements SellerDao {
 			rs = st.executeQuery(); //executa a query e armazena a linha com as informações do ID no ResultSet
 			
 			if(rs.next()) { //confere se o Id existe
-				Department dep = instantiateDdepartment(rs); //cria o objeto do tipo Department e adiciona os parametros
-				Seller obj = instantiateDdepartment(rs, dep); //cria o objeto do tipo Seller
+				Department dep = instantiateDepartment(rs); //cria o objeto do tipo Department e adiciona os parametros
+				Seller obj = instantiateSeller(rs, dep); //cria o objeto do tipo Seller
 								
 				return obj;
 			}
@@ -134,20 +134,20 @@ public class SellerDaoJDBC implements SellerDao {
 		}
 	}
 
-	private Seller instantiateDdepartment(ResultSet rs, Department dep) throws SQLException {
+	private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
 		Seller obj = new Seller();
 		
 		obj.setId(rs.getInt("Id"));
 		obj.setName(rs.getString("Name"));
 		obj.setEmail(rs.getString("Email"));
-		obj.setBirthDate(rs.getDate("BirthDate"));
+		obj.setBirthDate(new java.util.Date(rs.getTimestamp("BirthDate").getTime()));
 		obj.setBaseSalary(rs.getDouble("BaseSalary"));
 		obj.setDepartment(dep);
 		
 		return obj;
 	}
 
-	private Department instantiateDdepartment(ResultSet rs) throws SQLException {
+	private Department instantiateDepartment(ResultSet rs) throws SQLException {
 		Department dep = new Department();
 		dep.setId(rs.getInt("DepartmentId")); 
 		dep.setName(rs.getString("DepName"));
@@ -177,11 +177,11 @@ public class SellerDaoJDBC implements SellerDao {
 				Department dep = map.get(rs.getInt("DepartmentId"));
 				
 				if(dep == null) {
-					dep = instantiateDdepartment(rs); //cria o objeto do tipo Department e adiciona os parametros
+					dep = instantiateDepartment(rs); //cria o objeto do tipo Department e adiciona os parametros
 					map.put(rs.getInt("DepartmentId"), dep);
 				}
 				
-				Seller obj = instantiateDdepartment(rs, dep); //cria o objeto do tipo Seller
+				Seller obj = instantiateSeller(rs, dep); //cria o objeto do tipo Seller
 								
 				list.add(obj);
 			}
@@ -219,11 +219,11 @@ public class SellerDaoJDBC implements SellerDao {
 				Department dep = map.get(rs.getInt("DepartmentId"));
 				
 				if(dep == null) {
-					dep = instantiateDdepartment(rs); //cria o objeto do tipo Department e adiciona os parametros
+					dep = instantiateDepartment(rs); //cria o objeto do tipo Department e adiciona os parametros
 					map.put(rs.getInt("DepartmentId"), dep);
 				}
 				
-				Seller obj = instantiateDdepartment(rs, dep); //cria o objeto do tipo Seller
+				Seller obj = instantiateSeller(rs, dep); //cria o objeto do tipo Seller
 								
 				list.add(obj);
 			}
