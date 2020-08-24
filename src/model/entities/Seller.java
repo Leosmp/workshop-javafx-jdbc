@@ -14,19 +14,19 @@ public class Seller implements Serializable {
 	private String name;
 	private String email;
 	private Date birthDate;
-	private Double salalry;
+	private Double baseSalary;
 	
 	private Department department; //dependência -> modelo UML
 
 	public Seller() {
 	}
 
-	public Seller(Integer id, String name, String email, Date birthDate, Double salalry, Department department) {
+	public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.birthDate = birthDate;
-		this.salalry = salalry;
+		this.baseSalary = baseSalary;
 		this.department = department;
 	}
 
@@ -62,12 +62,12 @@ public class Seller implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	public Double getSalalry() {
-		return salalry;
+	public Double getBaseSalary() {
+		return baseSalary;
 	}
 
-	public void setSalalry(Double salalry) {
-		this.salalry = salalry;
+	public void setBaseSalary(Double baseSalary) {
+		this.baseSalary = baseSalary;
 	}
 
 	public Department getDepartment() {
@@ -110,7 +110,7 @@ public class Seller implements Serializable {
 				+ "\nname = " + name 
 				+ "\nemail = " + email 
 				+ "\nbirthDate = " + sdf.format(birthDate) 
-				+ "\nsalalry = " + String.format("%.2f", salalry)
+				+ "\nbaseSalary = " + String.format("%.2f", baseSalary)
 				+ "\ndepartment = " + department;
 	}
 	
